@@ -13,8 +13,11 @@ app.use(express.json());
 
 connectDB();
 
-app.use("/api", router);
+app.use("/", router);
 
+// app.get("/", (req, res) => {
+//   res.send("✅ Backend running on Render!");
+// });
 app.listen(PORT, () => {
     console.log(`✅Server is running on port ${PORT}`);
 });
