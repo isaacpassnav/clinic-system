@@ -5,12 +5,14 @@ const generateToken = require("../utils/generateToken");
 const registerUser = async (req, res) => {
   const pool = getPool();
   try {
-    const { full_name, email, password, phone, address, city, state } = req.body;
+    let { full_name, email, password, phone, address, city, state } = req.body;
 
     if (!full_name || !email || !password) {
       return res.status(400).json({ message: "Full name, email and password are required" });
     }
+    email = email.toLowerCase().trim();
 
+    // Verificar duplicado
     const [existing] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
     if (existing.length > 0) {
       return res.status(409).json({ message: "Email already exists" });
