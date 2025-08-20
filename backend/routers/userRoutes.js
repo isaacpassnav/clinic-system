@@ -8,6 +8,5 @@ router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);       
 
 // Rutas protegidas
-router.put("/:id", verifyToken, userController.updateUser);         // /users/:id
-
+router.put("/:id", verifyToken, userController.updateUser);        
 module.exports = router;

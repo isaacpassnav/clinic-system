@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS enrrollments;
-DROP TABLE IF EXISTS enrollments;
 DROP TABLE IF EXISTS courses;
-DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,8 +20,13 @@ CREATE TABLE IF NOT EXISTS courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT,
+    teacher_name VARCHAR(100) NOT NULL,
+    teacher_email VARCHAR(150) NOT NULL,
     duration_weeks INT NOT NULL,
     price DECIMAL(10,2) NOT NULL,
+    start_date DATE NOT NULL,
+    schedule VARCHAR(50) NOT NULL,  
+    days VARCHAR(100) NOT NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -25,8 +25,9 @@ const registerUser = async (req, res) => {
       [full_name, email, hashedPassword, phone || null, address || null, city || null, state || null, "user"]
     );
 
+    
     const newUser = { id: result.insertId, full_name, email, role: "user" };
-    const token = generateToken(newUser);
+    const token = generateToken(newUser.id, newUser.role);
 
     res.status(201).json({ message: "✅ User registered", user: newUser, token });
   } catch (err) {
@@ -40,44 +41,31 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ message: "Email and password required" });
-    }
-    const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
-    if (rows.length === 0) {
-      return res.status(401).json({ message: "Invalid credentials" });
+    const [userResult] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    if (userResult.length === 0) {
+      return res.status(400).json({ message: "Credenciales inválidas" });
     }
 
-    const user = rows[0];
+    const user = userResult[0];
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Credenciales inválidas" });
     }
-    const token = jwt.sign(
-      { id: user.id, role: user.role }, 
-      process.env.JWT_SECRET, 
-      { expiresIn: "10m" }
-    );
 
-    const message =
-      user.role === "admin"
-        ? `Welcome back, Admin ${user.full_name}!`
-        : `Welcome back, ${user.full_name}`;
-        
+    const token = generateToken(user);
+    const message = user.role === 'admin'
+      ?`Welcome back, Admin ${user.full_name}!`
+      :`Welcome back, ${user.full_name}`;
+
     res.status(200).json({
-      message,
-      user: {
-        id: user.id,
-        full_name: user.full_name,
-        email: user.email,
-        role: user.role,
-      },
+      message: message,
+      user: { id: user.id, name: user.full_name, email: user.email, role: user.role },
       token,
     });
-  } catch (err) {
-    console.error("Login error:", err);
-    res.status(500).json({ message: "Login failed", error: err.message });
+  } catch (error) {
+    console.error("Error en loginUser:", error);
+    res.status(500).json({ message: "Error en el servidor", error: error.message });
   }
 };
 

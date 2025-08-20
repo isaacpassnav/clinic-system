@@ -3,8 +3,8 @@ const router = express.Router();
 const enrrollmentController = require("../controllers/enrrollmentController");
 
 
-router.get("/", enrrollmentController.getEnrollments);         // /enrrollments/
-router.post("/", enrrollmentController.createEnrollment);      // /enrrollments/
-router.delete("/:id", enrrollmentController.deleteEnrrollment); // /enrrollments/:id
+router.get("/", enrrollmentController.getEnrrollments);         
+router.post("/", enrrollmentController.createEnrrollment);      
+router.delete("/:id", enrrollmentController.deleteEnrrollment); 
 
 module.exports = router;
