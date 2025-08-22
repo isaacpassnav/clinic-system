@@ -1,15 +1,27 @@
 const { getPool } = require("../config/db");
 
-const  getCourses = async (req, res) => {
+const getCourses = async (req, res) => {
     try {
         const pool = await getPool();
-        const [rows] = await pool.query("SELECT * FROM courses");
+        let rows;
+        
+        if (req.user.role === "admin") {
+            [rows] = await pool.query("SELECT * FROM courses");
+        } else {
+            [rows] = await pool.query(
+                `SELECT c.* FROM courses c
+                 JOIN enrollments e ON c.id = e.course_id
+                 WHERE e.user_id = ?`,
+                [req.user.id]
+            );
+        }
         res.json(rows);
     } catch (error) {
         console.error("Error al obtener cursos:", error);
         res.status(500).json({ error: "Error al obtener cursos" });
     }
 };
+
 const createCourse = async (req, res) => {
     try {
         const { title, description, teacher_name, teacher_email, duration_weeks, price, start_date, schedule, days } = req.body;

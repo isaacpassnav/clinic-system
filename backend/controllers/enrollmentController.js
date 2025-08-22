@@ -1,11 +1,11 @@
 const { getPool } = require("../config/db");
 
-const getEnrrollments = async (req, res) => {
+const getEnrollments = async (req, res) => {
   try {
     const pool = await getPool();
     const [rows] = await pool.query(`
       SELECT 
-        e.id AS enrrollment_id,
+        e.id AS enrollment_id,
         u.full_name AS student_name,
         u.email AS student_email,
         c.title AS course_title,
@@ -14,8 +14,8 @@ const getEnrrollments = async (req, res) => {
         c.schedule,
         c.days,
         e.status,
-        e.enrrolled_at
-      FROM enrrollments e
+        e.enrolled_at
+      FROM enrollments e
       JOIN users u ON e.user_id = u.id
       JOIN courses c ON e.course_id = c.id
     `);
@@ -26,7 +26,7 @@ const getEnrrollments = async (req, res) => {
   }
 };
 
-const createEnrrollment = async (req, res) => {
+const createEnrollment = async (req, res) => {
   const { user_id, course_id } = req.body;
 
   if (!user_id || !course_id) {
@@ -47,14 +47,14 @@ const createEnrrollment = async (req, res) => {
     }
 
     const [existing] = await pool.query(
-      "SELECT id FROM enrrollments WHERE user_id = ? AND course_id = ?",
+      "SELECT id FROM enrollments WHERE user_id = ? AND course_id = ?",
       [user_id, course_id]
     );
     if (existing.length > 0) {
       return res.status(400).json({ error: "El usuario ya está inscrito en este curso" });
     }
     const [result] = await pool.query(
-      "INSERT INTO enrrollments (user_id, course_id) VALUES (?, ?)",
+      "INSERT INTO enrollments (user_id, course_id) VALUES (?, ?)",
       [user_id, course_id]
     );
 
@@ -65,11 +65,11 @@ const createEnrrollment = async (req, res) => {
   }
 };
 
-const deleteEnrrollment = async (req, res) => {
+const deleteEnrollment = async (req, res) => {
   const { id } = req.params;
   try {
     const pool = await getPool();
-    const [result] = await pool.query("DELETE FROM enrrollments WHERE id = ?", [id]);
+    const [result] = await pool.query("DELETE FROM enrollments WHERE id = ?", [id]);
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: "Inscripción no encontrada" });
@@ -81,4 +81,4 @@ const deleteEnrrollment = async (req, res) => {
   }
 };
 
-module.exports = {getEnrrollments,createEnrrollment,deleteEnrrollment,};
+module.exports = {getEnrollments,createEnrollment,deleteEnrollment,};

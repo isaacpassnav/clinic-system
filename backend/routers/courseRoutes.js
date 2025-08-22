@@ -4,10 +4,10 @@ const courseController = require("../controllers/courseController");
 const authorizeAdmin = require("../middlewares/authorizeAdmin");
 const verifyToken = require("../middlewares/verifyToken");
 
-// Cursos
-router.get("/", courseController.getCourses);           // /courses/
-router.post("/createcourse", courseController.createCourse);        // /courses/
-router.put("/:id", courseController.updateCourse);      // /courses/:id
-router.delete("/:id", courseController.deleteCourse);   // /courses/:id
 
+router.get("/", verifyToken, courseController.getCourses);            
+router.post("/create", verifyToken, authorizeAdmin, courseController.createCourse);   
+router.put("/:id", verifyToken, authorizeAdmin, courseController.updateCourse);       
+router.delete("/:id", verifyToken, authorizeAdmin, courseController.deleteCourse);    
 module.exports = router;
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academia Online</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- HEADER transparente sobre el carrusel -->
+  <header class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center text-white" href="#">
+        <img src="assets/img/logo.jpg" alt="Logo" width="70" class="me-2">
+        <span class="fw-bold">Enfer-tech-cap</span>
+      </a>
+
+      <div class="d-flex ms-auto">
+        <a href="/signup.html" class="btn btn-primary me-2">
+          <i class="fa-solid fa-user-plus"></i> Sign Up
+        </a>
+        <a href="/login.html" class="btn btn-outline-light">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- CARRUSEL -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="https://img1.wsimg.com/isteam/getty/2191182540" class="d-block w-100 carousel-img" alt="Carrusel 1">
+          <div class="carousel-caption text-start">
+            <h2 class="fw-bold">Aprende con los mejores</h2>
+            <p>Únete a nuestros cursos y potencia tus habilidades.</p>
+            <a href="#register" class="btn btn-primary btn-lg">Inscríbete</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://img1.wsimg.com/isteam/getty/2198864187" class="d-block w-100 carousel-img" alt="Carrusel 2">
+          <div class="carousel-caption text-start">
+            <h2 class="fw-bold">Cursos 100% prácticos</h2>
+            <p>Aprende de manera aplicada con proyectos reales.</p>
+            <a href="#register" class="btn btn-warning btn-lg">Inscríbete</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://img1.wsimg.com/isteam/getty/2191425878" class="d-block w-100 carousel-img" alt="Carrusel 3">
+          <div class="carousel-caption text-start">
+            <h2 class="fw-bold">Flexibilidad de horarios</h2>
+            <p>Estudia cuando y donde quieras.</p>
+            <a href="#register" class="btn btn-success btn-lg">Inscríbete</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://img1.wsimg.com/isteam/getty/2121983954" class="d-block w-100 carousel-img" alt="Carrusel 4">
+          <div class="carousel-caption text-start">
+            <h2 class="fw-bold">Docentes expertos</h2>
+            <p>Recibe clases de profesionales con experiencia.</p>
+            <a href="#register" class="btn btn-danger btn-lg">Inscríbete</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://img1.wsimg.com/isteam/getty/2173809200" class="d-block w-100 carousel-img" alt="Carrusel 5">
+          <div class="carousel-caption text-start">
+            <h2 class="fw-bold">Certificación al completar</h2>
+            <p>Recibe un certificado válido al terminar tu curso.</p>
+            <a href="#register" class="btn btn-info btn-lg">Inscríbete</a>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://img1.wsimg.com/isteam/getty/79340502" class="d-block w-100 carousel-img" alt="Carrusel 6">
+          <div class="carousel-caption text-start">
+            <h2 class="fw-bold">Comienza hoy mismo</h2>
+            <p>No esperes más para transformar tu futuro.</p>
+            <a href="#register" class="btn btn-primary btn-lg">Inscríbete</a>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-light py-4">
+    <div class="container text-center">
+      <p>&copy; 2025 Enfer-tech-cap - Todos los derechos reservados</p>
+      <div>
+        <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

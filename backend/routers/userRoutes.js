@@ -3,10 +3,12 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 const verifyToken = require("../middlewares/verifyToken");
 
-// Rutas públicas
-router.post("/register", userController.registerUser); 
-router.post("/login", userController.loginUser);       
+router.post("/register", userController.registerUser);
+router.post("/login", userController.loginUser);
 
-// Rutas protegidas
-router.put("/:id", verifyToken, userController.updateUser);        
+// Rutas protegidas (requieren sesión activa)
+router.put("/:id", verifyToken, userController.updateUser);
+router.delete("/:id", verifyToken, userController.deleteUser);
+
 module.exports = router;
+
