@@ -16,9 +16,7 @@ const registerUser = async (req, res) => {
     if (existing.length > 0) {
       return res.status(409).json({ message: "Email already exists" });
     }
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const [result] = await pool.query(
       "INSERT INTO users (full_name, email, password, phone, address, city, state, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [full_name, email, hashedPassword, phone || null, address || null, city || null, state || null, "user"]
@@ -26,7 +24,6 @@ const registerUser = async (req, res) => {
 
     const newUser = { id: result.insertId, full_name, email, role: "user" };
     const token = signAccessToken({ id: newUser.id, role: newUser.role });
-
     res.status(201).json({
       message: "✅ User registered",
       user: newUser,
@@ -47,7 +44,6 @@ const loginUser = async (req, res) => {
     if (userResult.length === 0) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-
     const user = userResult[0];
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -56,7 +52,6 @@ const loginUser = async (req, res) => {
 
     const accessToken = signAccessToken({ id: user.id, role: user.role });
     const refreshToken = signRefreshToken({ id: user.id, role: user.role });
-
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -126,19 +121,16 @@ const updateUser = async (req, res) => {
 
     values.push(userId);
     const query = `UPDATE users SET ${updateFields.join(", ")} WHERE id = ?`;
-
     const [result] = await pool.query(query, values);
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "User not found or no changes made" });
     }
-
     res.status(200).json({ message: "✅ User updated successfully" });
   } catch (err) {
     console.error("Update user error:", err);
     res.status(500).json({ message: "Failed to update user", error: err.message });
   }
 };
-
 const deleteUser = async (req, res) => {
   const pool =  await getPool();
   try {
@@ -149,7 +141,6 @@ const deleteUser = async (req, res) => {
     }
 
     const [result] = await pool.query("DELETE FROM users WHERE id = ?", [userId]);
-
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -160,5 +151,4 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ message: "Failed to delete user", error: err.message });
   }
 };
-
 module.exports = {registerUser,loginUser,updateUser,deleteUser};

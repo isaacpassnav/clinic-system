@@ -1,7 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
-
 .navbar.fixed-top {
   background: transparent !important;
   box-shadow: none !important;
@@ -16,10 +15,9 @@ body {
   border-color: #fff;
   color: #fff;
 }
-
 /* Carrusel: altura controlada, imagen recortada y overlay sutil para legibilidad */
 .carousel-img {
-  height: 95vh;     
+  height: 100vh;     
   object-fit: cover;  
 }
 .carousel-item {
@@ -35,15 +33,15 @@ body {
 .carousel-caption {
   left: 5%;
   right: auto;
-  bottom: 22%;
+  bottom: 6%;
   text-align: left;
+  padding-left: 40px;
 }
 .carousel-caption h2,
 .carousel-caption p {
-  background: rgba(0, 0, 0, 0.4);/* <- antes tenías "display: left" */
+  background: rgba(0, 0, 0, 0.4);
   padding: 8px 12px;
   border-radius: 6px;
 }
 
 footer { font-size: 0.9rem; }
-
