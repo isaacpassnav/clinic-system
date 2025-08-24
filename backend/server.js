@@ -21,7 +21,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-const authLimiter = rateLimit({windowMs: 15*60*1000, max: 100, standarHTTPHeaders: true, legacyHeaders: false});
+const authLimiter = rateLimit({windowMs: 15*60*1000, max: 100, standardHTTPHeaders: true, legacyHeaders: false});
 connectDB();
 
 app.use("/auth", authLimiter);
