@@ -4,10 +4,7 @@ const enrollmentController = require("../controllers/enrollmentController");
 const verifyToken = require("../middlewares/verifyToken");
 
 router.get("/", verifyToken, enrollmentController.getEnrollments);         
-
 router.post("/", verifyToken, enrollmentController.createEnrollment);      
-
 router.delete("/:id", verifyToken, enrollmentController.deleteEnrollment); 
 
 module.exports = router;
-

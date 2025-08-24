@@ -5,10 +5,7 @@ const verifyToken = require("../middlewares/verifyToken");
 
 router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);
-
-// Rutas protegidas (requieren sesión activa)
 router.put("/:id", verifyToken, userController.updateUser);
 router.delete("/:id", verifyToken, userController.deleteUser);
 
 module.exports = router;
-

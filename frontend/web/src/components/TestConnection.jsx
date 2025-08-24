@@ -5,7 +5,7 @@ const TestConnection = () => {
   let [message, setMessage] = useState("");
 
   useEffect(() => {
-    api.get("/api/test")
+    api.get("/")
       .then(res => {
         setMessage(res.data.message);
         console.log("✅ Frontend conectado exitosamente al backend");
