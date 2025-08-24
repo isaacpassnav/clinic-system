@@ -5,16 +5,13 @@ function WhatsAppButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const hero = document.querySelector("#mainCarousel");   // Carrusel
-      const contact = document.querySelector("#contacto");    // Contact section
-
+      const hero = document.querySelector("#mainCarousel");   
+      const contact = document.querySelector("#contacto");   
       if (!hero || !contact) return;
 
       const heroBottom = hero.getBoundingClientRect().bottom;
       const contactTop = contact.getBoundingClientRect().top;
 
-      // Mostrar cuando ya pasaste el carrusel
-      // Ocultar cuando entras a contacto
       if (heroBottom < 0 && contactTop > window.innerHeight / 3) {
         setVisible(true);
       } else {

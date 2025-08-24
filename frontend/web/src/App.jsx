@@ -1,15 +1,16 @@
-import Header from "./components/Header";
-import Carousel from "./components/Carousel";
-import Benefits from "./components/Benefits";
-import FeaturedCourses from "./components/FeaturedCourses";
-import EnrollForm from "./components/EnrollForm";
-import ContactUs from "./components/ContactUs";
-import Footer from "./components/Footer";
-import TestConnection from "./components/TestConnection";
-import AboutUs from "./components/AboutUs";
-import CTA from "./components/CTA";
-import WhatsAppButton from "./components/WhatsAppButton";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Header from "./components/common/Header";
+import Carousel from "./components/layout/Carousel";
+import Benefits from "./components/sections/Benefits";
+import FeaturedCourses from "./components/sections/FeaturedCourses";
+import EnrollForm from "./components/sections/EnrollForm";
+import ContactUs from "./components/sections/ContactUs";
+import Footer from "./components/common/Footer";
+import TestConnection from "./components/TestConnection";
+import AboutUs from "./components/sections/AboutUs";
+import CTA from "./components/layout/CTA";
+import WhatsAppButton from "./components/layout/WhatsAppButton";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -18,21 +19,33 @@ import "./assets/css/style.css";
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
-       <TestConnection />
-      <main>
-        <Carousel />
-        <WhatsAppButton />
-        <AboutUs />
-        <Benefits />
-        <FeaturedCourses />
-        <EnrollForm />
-        <ContactUs />
-        <CTA/>
-      </main>
+      <TestConnection />
+
+      <Routes>
+        {/* Ruta principal (Home) */}
+        <Route
+          path="/"
+          element={
+            <main>
+              <Carousel />
+              <WhatsAppButton />
+              <AboutUs />
+              <Benefits />
+              <FeaturedCourses />
+              <ContactUs />
+              <CTA />
+            </main>
+          }
+        />
+
+        {/* Ruta de inscripción */}
+        <Route path="/signup" element={<EnrollForm />} />
+      </Routes>
+
       <Footer />
-    </>
+    </Router>
   );
 }
 

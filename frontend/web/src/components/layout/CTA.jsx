@@ -11,10 +11,8 @@ const CTA = () => {
         setShowCTA(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
 
-    // Observer para detectar cuando Contact está visible
     const contactSection = document.getElementById("contacto");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,16 +40,7 @@ const CTA = () => {
 
   return (
     <div
-      className="text-white py-3 px-4 d-flex justify-content-between align-items-center shadow animate__animated animate__fadeInUp"
-      style={{
-        position: "fixed",
-        bottom: "0",
-        left: "0",
-        width: "100%",
-        zIndex: "1050",
-        background: "linear-gradient(90deg, #0066cc, #00b894)",
-        transition: "all 0.3s ease-in-out",
-      }}
+      className={`cta-bar ${showCTA ? "show" : "hide"}`}
     >
       <div>
         <h5 className="mb-1 fw-bold">¡Inscríbete hoy!</h5>
@@ -68,5 +57,4 @@ const CTA = () => {
     </div>
   );
 };
-
 export default CTA;
