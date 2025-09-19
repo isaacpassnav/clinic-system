@@ -49,7 +49,7 @@ const CTA = () => {
         </small>
       </div>
       <a
-        href="#enroll-form"
+        href="/signup"
         className="btn btn-light fw-bold shadow-sm px-3"
       >
         Quiero inscribirme

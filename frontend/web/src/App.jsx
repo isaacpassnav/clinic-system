@@ -1,16 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/common/Header";
-import Carousel from "./components/layout/Carousel";
-import Benefits from "./components/sections/Benefits";
-import FeaturedCourses from "./components/sections/FeaturedCourses";
-import EnrollForm from "./components/sections/EnrollForm";
-import ContactUs from "./components/sections/ContactUs";
 import Footer from "./components/common/Footer";
 import TestConnection from "./components/TestConnection";
-import AboutUs from "./components/sections/AboutUs";
-import CTA from "./components/layout/CTA";
-import WhatsAppButton from "./components/layout/WhatsAppButton";
+import LandingPage from "./pages/LandingPage";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -22,26 +17,10 @@ function App() {
     <Router>
       <Header />
       <TestConnection />
-
       <Routes>
-        {/* Ruta principal (Home) */}
-        <Route
-          path="/"
-          element={
-            <main>
-              <Carousel />
-              <WhatsAppButton />
-              <AboutUs />
-              <Benefits />
-              <FeaturedCourses />
-              <ContactUs />
-              <CTA />
-            </main>
-          }
-        />
-
-        {/* Ruta de inscripción */}
-        <Route path="/signup" element={<EnrollForm />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
 
       <Footer />
